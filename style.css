@@ -1,0 +1,43 @@
+* {
+  border: 1px solid red;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+section {
+  display: flex;
+  justify-content: space-around;
+}
+.mini-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.game-screen {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  grid-template-rows: repeat(24, 1fr);
+
+  position: relative;
+  background-image: url("assests/background.png");
+  background-size: cover;
+  background-position: center center;
+
+  height: 500px;
+  width: 500px;
+}
+
+.cell {
+  background-color: red;
+  margin: 2px;
+}
+.snake-head {
+  background-color: purple;
+}
+.snake-body {
+  background-color: rgb(248, 114, 248);
+}
+.snake-tail {
+  background-color: rgb(255, 255, 255);
+}
