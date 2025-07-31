@@ -1,67 +1,133 @@
 * {
-  border: 1px solid red;
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 body {
   display: flex;
   flex-direction: column;
+  background-color: #4f4c49;
 }
+/* ---------------------- */
+/* Header design */
+/* -------------------------- */
+header {
+  text-align: center;
+  font-size: 38px;
+  background-color: #d2c9ba;
+  padding: 7px;
+  border: 5px solid #3b3b3b;
+  /* border-radius: 20px; */
+}
+/* ----------------------------- */
+/* section design */
+/* ------------------------------ */
 section {
   display: flex;
   justify-content: space-around;
 }
+/* mini-header design */
 .mini-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.mini-header img {
+  height: 33px;
+  width: 33px;
+}
+/* mini header icons and scores */
+.text-score,
+.text-gem {
+  margin-top: 11px;
+}
+.score img {
+  height: 37px;
+  width: 37px;
 }
 
+.score,
+.gemshow {
+  display: flex;
+}
+/* Score board and info */
+.scoreBoard,
+.info {
+  margin-top: 60px;
+  background-color: #d2c9ba;
+  padding: 7px;
+  border: 5px solid #3b3b3b;
+}
+.scoreBoard .title,
+.info .title {
+  font-size: 17px;
+}
+/* Main Content */
+.content {
+  margin-top: 40px;
+}
 .game-screen {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(24, 1fr);
   grid-template-rows: repeat(24, 1fr);
 
-  position: relative;
-  background-image: url("assests/background.png");
+  background-image: url("assets/background2.png");
   background-size: cover;
   background-position: center center;
+  border: 5px solid #3b3b3b;
 
   height: 500px;
   width: 500px;
 }
 .cover img {
-  height: 200px;
-  width: 200px;
   position: absolute;
+  height: 100%;
   z-index: 2;
+  left: 0px;
+  top: 0px;
+}
+.cover-text {
+  color: white;
+  position: absolute;
+  z-index: 3;
+  bottom: 21px;
+  left: 29px;
+}
+.blink {
+  display: none;
+}
+.gameover-text {
+  color: red;
+  z-index: 2;
+  position: absolute;
+  bottom: 222px;
+  left: 123px;
+  font-size: 27px;
+  display: none;
 }
 
-.cell {
-  background-color: red;
-  margin: 2px;
-}
-.food img {
-  height: 1fr;
-  width: 1fr;
-}
+/* design of food, snake skin etc. */
 .apple {
-  background-image: url("./assests/apple.png");
+  background-image: url("./assets/apple.png");
   background-size: contain;
   background-position: center center;
   transform: scale(2);
 }
 .cherry {
-  background-image: url("./assests/cherry.png");
+  background-image: url("./assets/cherry.png");
   background-size: contain;
   background-position: center center;
   transform: scale(2);
 }
 .banana {
-  background-image: url("./assests/banana.png");
+  background-image: url("./assets/banana.png");
   background-size: contain;
   background-position: center center;
   transform: scale(2);
 }
 .gem {
-  background-image: url("./assests/gem.png");
+  background-image: url("./assets/gem.png");
   background-size: contain;
   background-position: center center;
   transform: scale(2);

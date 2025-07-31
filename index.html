@@ -5,37 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classical Snake Game </title>
+    <!-- Add Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Add CSS -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header>
-        Snake game
+        <div> Snake XO game</div>
     </header>
 
     <section>
-        <div class="scoreBoard">LEaderboard</div>
+        <div class="scoreBoard">
+            <div class="title">ScoreBoard</div>
+        </div>
         <div class="content">
             <div class="mini-header">
-                <div class="score">0104</div>
-                <div class="gem">7</div>
+                <div class="score"><img src="./assets/apple.png" alt="">
+                    <div class="text-score">0104</div>
+                </div>
+                <div class="gemshow"><img src="./assets/emerald.png" alt="">
+                    <div class="text-gem">7</div>
+                </div>
             </div>
             <div class="game-screen">
-
-
+                <div class="cover"><img src="./assets/cover2.png" alt=""></div>
+                <div class="cover-text">Click/press any key to start </div>
+                <div class="gameover-text">Game Over!</div>
             </div>
         </div>
-        <div class="info"> How to play</div>
+        <div class="info">
+            <div class="title">How to play</div>
+        </div>
     </section>
-    <div class="snake-head"></div>
-    <div class="snake-body"></div>
-    <div class="snake-tail"></div>
-    <!-- <div class="food">
-        <div class="apple"><img src="./assests/apple.png" alt=""></div>
-        <div class="cherry"><img src="./assests/cherry.png" alt=""></div>
-        <div class="banana"><img src="./assests/banana.png" alt=""></div>
-    </div> -->
-    <div class="cover"><img src="./assests/cover.png" alt=""></div>
+
     <script src="app.js"></script>
 </body>
 

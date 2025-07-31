@@ -1,9 +1,11 @@
-//Creating Cells (We can also use Canvas tag)
+//variables
 let start = false;
 let foodif = false;
 let currid;
+let textid;
 let cells = [];
 let snake = [ {x:12,y:12},{x:12,y:13},{x:12,y:14},{x:12,y:15}];
+//Creating Cells (We can also use Canvas tag)
 for(let i=1;i<=24;i++){
     let row = [];
     for(let j= 1;j<=24;j++){
@@ -14,33 +16,69 @@ for(let i=1;i<=24;i++){
     }
     cells.push(row);
 }
-
-gameover(); //initailly no movement 
-
+//initial text blink
+ textid = setInterval(() => {
+    document.querySelector(".cover-text").classList.toggle("blink");
+   }, 700); 
 //track the start of the game (Keyboard key)
 document.addEventListener("keydown",()=>{
  if(start == false){
-   start == true;
+   start = true;
    document.querySelector(".cover").style.display = "none"; 
-   currid = loopgame();
+  document.querySelector(".cover-text").classList.add("blink"); 
+  clearInterval(textid);
+
+   //Create a initial snake
+cells[12][12].setAttribute("class","snake-head");
+cells[12][13].setAttribute("class","snake-body");
+cells[12][14].setAttribute("class","snake-body");
+cells[12][15].setAttribute("class","snake-tail");
+
+  currid = loopgame(); //starts the game
+
  }
 })
-
 // track the start of the game (mouse-click)
 document.querySelector(".game-screen").addEventListener("click",()=>{
  if(start == false){
    start = true;
-  document.querySelector(".cover").style.display = "none"; 
-  currid = loopgame();
+   document.querySelector(".cover").style.display = "none"; 
+   document.querySelector(".cover-text").classList.add("blink");
+    clearInterval(textid);
+
+
+   //Create a initial snake
+cells[12][12].setAttribute("class","snake-head");
+cells[12][13].setAttribute("class","snake-body");
+cells[12][14].setAttribute("class","snake-body");
+cells[12][15].setAttribute("class","snake-tail");
+
+  currid = loopgame(); //starts the game
+
  }
 })
 
 //gameover
 function gameover(){
-  console.log("game over,id is" , currid);
-    clearInterval(currid);
+  console.log("game over, id is" , currid);
+  clearInterval(currid); //stops the game
+  document.querySelector(".gameover-text").style.display = "block"; //gameover text visible
+  setTimeout(()=>{ //gameover text disappers
+    document.querySelector(".gameover-text").style.display = "none";
+     start = false; //bug fix
+  },1000);
+setTimeout(()=>{ //cover visible
     document.querySelector(".cover").style.display = "block"; 
-    start = false;
+  textid = setInterval(() => {
+    document.querySelector(".cover-text").classList.toggle("blink"); //texts blinks
+   }, 1000); 
+},1000);
+
+     for (const e of snake) { //removes old snake
+      cells[e.x][e.y].removeAttribute("class");
+      cells[e.x][e.y].setAttribute("class","cell");
+     }
+    snake = [ {x:12,y:12},{x:12,y:13},{x:12,y:14},{x:12,y:15}]; //reset snake position
   }
 
 // loop
@@ -50,15 +88,6 @@ let id = setInterval(() => {
 }, 250);
 return id;
 }
-
-//Create a initial snake
-cells[12][12].setAttribute("class","snake-head");
-cells[12][13].setAttribute("class","snake-body");
-cells[12][14].setAttribute("class","snake-body");
-cells[12][15].setAttribute("class","snake-tail");
-// Generate a initial Food
-cells[17][18].setAttribute("class","apple cell");
-
 
 // Movement Tracker
 let currentmove = {x:-1,y:0};
@@ -88,7 +117,7 @@ function work(){
     } else if(i==snake.length-1){ //tails
                 if(foodif == true){ //if food eaten
                   foodif = false;
-                  let newtail = { x:`${snake[i].x}`,y:`${snake[i].y}`};
+                 let newtail = { x: snake[i].x, y: snake[i].y };
                 snake.push(newtail);
 
                  
@@ -122,9 +151,9 @@ function work(){
   }
   if(snake[0].x == 0 || snake[0].x == 23 || snake[0].y == 0|| snake[0].y == 23){
      gameover();
-     console.log("calling gameover")
+   
   }if(checkbite()){
-     console.log("bite");
+      gameover();
   }
 console.log("after:", snake);
 }
@@ -135,6 +164,8 @@ console.log("after:", snake);
 let foodX = 17;
 let foodY = 18;
 let food = "apple";
+// Generate a initial Food
+cells[17][18].setAttribute("class","apple cell");
 //Main food Spawn Function
 function foodController(){
   cells[foodX][foodY].classList.remove(`${food}`); //Remove old Food
@@ -164,30 +195,28 @@ function foodController(){
 
   //Some food controller functions,
   function foodCoordinate(){ //Co-ordinate generator
-   foodX =  Math.floor((Math.random() * 23)+1);
-   foodY =  Math.floor((Math.random() * 23)+1);
+   foodX =  Math.floor((Math.random() * 22)+1);
+   foodY =  Math.floor((Math.random() * 22)+1);
   }
-  function foodCheck(){ //Checks if food generates on snake
-     for(let i=0; i<=snake.length;i++){
-         if(foodX == snake[i].x && foodY == snake[i].y){
-          foodCoordinate();
-           return true;
-         } else return false;
-    }
-  }
+  function foodCheck(){ //check if food generated on snake
+   for(let i = 0; i < snake.length; i++) {
+      if(foodX == snake[i].x && foodY == snake[i].y) {
+         return true;
+      }
+   }
+   return false;
+}
 }
 
 function checkbite(){
-  for(let i=1; i<=snake.length;i++){
-    if((snake[0].x===snake[i].x) && (snake[0].y===snake[i].y) ){
+  for(let i=1; i<snake.length; i++){
+    if(snake[0].x === snake[i].x && snake[0].y === snake[i].y){
       return true;
-    }else 
-      {return false;}
+    }
   }
+  return false;
 }
 
-// function sizecontroller(a,b){
-//  snake.shift(`{x:${a},y:${b}}`)
-// }
+
 
 
