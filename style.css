@@ -32,6 +32,34 @@ section {
   background-color: red;
   margin: 2px;
 }
+.food img {
+  height: 1fr;
+  width: 1fr;
+}
+.apple {
+  background-image: url("./assests/apple.png");
+  background-size: contain;
+  background-position: center center;
+  transform: scale(2);
+}
+.cherry {
+  background-image: url("./assests/cherry.png");
+  background-size: contain;
+  background-position: center center;
+  transform: scale(2);
+}
+.banana {
+  background-image: url("./assests/banana.png");
+  background-size: contain;
+  background-position: center center;
+  transform: scale(2);
+}
+.gem {
+  background-image: url("./assests/gem.png");
+  background-size: contain;
+  background-position: center center;
+  transform: scale(2);
+}
 .snake-head {
   background-color: purple;
 }

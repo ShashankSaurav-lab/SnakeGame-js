@@ -65,7 +65,54 @@ function work(){ //main logic
      cells[snake[i].x][snake[i].y].setAttribute("class","snake-body");
     }
    }
+  if (snake[0].x == foodX && snake[0].y == foodY){
+     foodController();
+  }
 console.log("after", snake);
+}
+
+//random food
+cells[17][18].setAttribute("class","apple cell");
+let foodX = 17;
+let foodY = 18;
+let food = "apple";
+function foodController(){
+  cells[foodX][foodY].classList.remove(`${food}`); //remove old one
+
+  let num1 = Math.floor((Math.random() * 3)+1);
+  if (num1 == 3){
+    food = "apple";
+  } else if (num1 == 2){
+    food = "banana";
+  } else if(num1 == 1){
+    food = "cherry";
+  }
+foodCoordinate();
+ for (let i=0;true;i++){
+  if(foodCheck() == false){
+    break;
+  } else {
+foodCoordinate();
+  }
+ }
+console.log(foodX,foodY);
+cells[foodX][foodY].classList.add(`${food}`);
+}
+
+
+
+function foodCoordinate(){
+   foodX =  Math.floor(Math.random() * 17);
+   foodY =  Math.floor(Math.random() * 17);
+}
+
+function foodCheck(){
+for(let i=0; i<=snake.length;i++){
+  if(foodX == snake[i].x && foodY == snake[i].y){
+     foodCoordinate();
+     return true;
+  } else return false;
+}
 }
 
 
