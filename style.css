@@ -132,12 +132,73 @@ section {
   background-position: center center;
   transform: scale(2);
 }
-.snake-head {
-  background-color: purple;
-}
-.snake-body {
-  background-color: rgb(248, 114, 248);
-}
+
+/* SHARED: Rich, blocky, heavily textured, dark green snake base */
+.snake-head,
+.snake-body,
 .snake-tail {
-  background-color: rgb(255, 255, 255);
+  position: relative;
+  z-index: 1;
+  border-radius: 2px;
+  background:
+    /* Snake-scale diamond pattern, more pronounced */ repeating-linear-gradient(
+      135deg,
+      #28361d 0 3px,
+      #56753b 3px 8px
+    ),
+    repeating-linear-gradient(-45deg, #8da16c 0 3px, #2c4b26 3px 7px),
+    /* Texture overlay: erosion/grime */
+      repeating-linear-gradient(
+        160deg,
+        #22351322 2px,
+        transparent 4px,
+        transparent 8px
+      ),
+    linear-gradient(180deg, #273b24 64%, #171b12 100%);
+}
+
+/* SNAKE HEAD: darker and "marked", sets it apart */
+.snake-head {
+  background:
+    /* Bolder diamonds and spot pattern */ repeating-linear-gradient(
+      135deg,
+      #1c2614 0 3px,
+      #324427 3px 8px
+    ),
+    repeating-linear-gradient(-45deg, #64934d 0 3px, #23381a 3px 7px),
+    /* Head center mark -- faint lighter "arrow"/triangle for focus */
+      linear-gradient(160deg, transparent 80%, #b6e29233 100%),
+    /* Head shadow for attention */
+      linear-gradient(180deg, #243a1a 67%, #161b0f 100%);
+}
+
+/* SNAKE BODY: more natural green, heavy diamond scales, grime overlay */
+.snake-body {
+  background: repeating-linear-gradient(135deg, #28361d 0 3px, #56753b 3px 8px),
+    repeating-linear-gradient(-45deg, #8da16c 0 3px, #2c4b26 3px 7px),
+    repeating-linear-gradient(
+      160deg,
+      #22351322 2px,
+      transparent 4px,
+      transparent 8px
+    ),
+    linear-gradient(180deg, #2e5430 60%, #212c1b 100%);
+}
+
+/* SNAKE TAIL: tapers to rich dark, same texture for seamlessness */
+.snake-tail {
+  border-radius: 2px 3px 8px 1px;
+  background: repeating-linear-gradient(135deg, #28361d 0 3px, #56753b 3px 8px),
+    repeating-linear-gradient(-45deg, #8da16c 0 3px, #2c4b26 3px 7px),
+    linear-gradient(180deg, #334d29 75%, #141b10 100%);
+}
+
+/* No grid/highlight effect */
+.game-screen,
+.cell,
+.snake-head,
+.snake-body,
+.snake-tail {
+  image-rendering: crisp-edges;
+  outline: none;
 }
