@@ -1,10 +1,12 @@
 //variables
+let scoreFood = 0;
 let start = false;
 let foodif = false;
 let currid;
 let textid;
 let cells = [];
 let snake = [ {x:12,y:12},{x:12,y:13},{x:12,y:14},{x:12,y:15}];
+
 //Creating Cells (We can also use Canvas tag)
 for(let i=1;i<=24;i++){
     let row = [];
@@ -61,6 +63,8 @@ cells[12][15].setAttribute("class","snake-tail");
 //gameover
 function gameover(){
   console.log("game over, id is" , currid);
+   scoreFood = 0;
+    document.querySelector(".text-score").textContent = `${scoreFood}`; //Score = 0
   clearInterval(currid); //stops the game
   document.querySelector(".gameover-text").style.display = "block"; //gameover text visible
   setTimeout(()=>{ //gameover text disappers
@@ -114,8 +118,8 @@ function work(){
        snake[0].y = snake[0].y + currentmove.y;
 
       cells[snake[0].x][snake[0].y].setAttribute("class","snake-head");
-    } else if(i==snake.length-1){ //tails
-                if(foodif == true){ //if food eaten
+    } else if(i==snake.length-1){ //tail control
+                if(foodif == true){ //if food eaten, then tail will..
                   foodif = false;
                  let newtail = { x: snake[i].x, y: snake[i].y };
                 snake.push(newtail);
@@ -126,7 +130,7 @@ function work(){
                 snake[i].y = snake[i-1].y;
                cells[snake[i].x][snake[i].y].setAttribute("class","snake-tail");
                 }
-                else { //if food not eaten
+                else { //if food not eaten, then tail will...
                   cells[snake[i].x][snake[i].y].removeAttribute("class");
                    cells[snake[i].x][snake[i].y].setAttribute("class","cell");
                   
@@ -144,10 +148,11 @@ function work(){
      cells[snake[i].x][snake[i].y].classList.add("snake-body");
     }
    }
-
-  if (snake[0].x == foodX && snake[0].y == foodY){ //generates food
+      
+  if (snake[0].x == foodX && snake[0].y == foodY){ //generates food when snake eats food
      foodController();
      foodif = true;
+     document.querySelector(".text-score").textContent = `${++scoreFood}`;
   }
   if(snake[0].x == 0 || snake[0].x == 23 || snake[0].y == 0|| snake[0].y == 23){
      gameover();
