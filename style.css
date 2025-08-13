@@ -55,12 +55,43 @@ section {
 .info {
   margin-top: 60px;
   background-color: #d2c9ba;
-  padding: 7px;
   border: 5px solid #3b3b3b;
 }
+#S1 {
+  width: 23vw;
+  object-fit: cover;
+  position: relative;
+  transform: translate(-20%, -62%);
+}
+
 .scoreBoard .title,
 .info .title {
   font-size: 17px;
+  margin: 10px;
+  margin-top: 20px;
+}
+
+.scoreBoard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 15vw;
+}
+.resetbtn {
+  background-color: #341b14da;
+  text-align: center;
+  padding: 7px;
+  border-radius: 5px;
+  border: 4px solid #261c16;
+}
+.resetbtn:hover {
+  cursor: pointer;
+}
+/* Shop etc. */
+.shop {
+  width: 20vw;
+  background-color: white;
+  height: 10vh;
 }
 /* Main Content */
 .content {
